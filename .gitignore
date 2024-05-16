@@ -137,3 +137,6 @@ dmypy.json
 
 # ignorable folder/files pattern
 _ignore*
+
+myenv
+examples/speech_recognition/my
