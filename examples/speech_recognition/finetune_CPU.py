@@ -2,6 +2,7 @@ import torch
 from huggingsound import TrainingArguments, ModelArguments, SpeechRecognitionModel, TokenSet
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cpu"
 model = SpeechRecognitionModel("jonatasgrosman/wav2vec2-xls-r-1b-russian", device=device)
 output_dir = "my/CPU_model"
 
