@@ -3,7 +3,7 @@ from huggingsound import TrainingArguments, ModelArguments, SpeechRecognitionMod
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model = SpeechRecognitionModel("jonatasgrosman/wav2vec2-xls-r-1b-russian", device=device)
-output_dir = "my/finetuned/model/output/dir"
+output_dir = "my/CPU_model"
 
 # first of all, you need to define your model's token set
 # tokens = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "'"]
@@ -11,14 +11,20 @@ tokens = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к'
 
 token_set = TokenSet(tokens)
 
+learning_rate=3e-4
+max_steps=0
+eval_steps=None
+per_device_train_batch_size=8
+per_device_eval_batch_size=8
+
 # the lines below will load the training and model arguments objects, 
 # you can check the source code (huggingsound.trainer.TrainingArguments and huggingsound.trainer.ModelArguments) to see all the available arguments
 training_args = TrainingArguments(
-    learning_rate=3e-4,
-    max_steps=1000,
-    eval_steps=200,
-    per_device_train_batch_size=2,
-    per_device_eval_batch_size=2,
+    learning_rate=learning_rate,
+    max_steps=max_steps,
+    eval_steps=eval_steps,
+    per_device_train_batch_size=per_device_train_batch_size,
+    per_device_eval_batch_size=per_device_eval_batch_size,
 )
 model_args = ModelArguments(
     activation_dropout=0.1,
