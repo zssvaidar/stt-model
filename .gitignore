@@ -140,3 +140,4 @@ _ignore*
 
 myenv
 examples/speech_recognition/my
+sbx_train_data
